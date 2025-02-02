@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Предпросмотр визитки</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title">Ваша визитка</h1>
+                <div id="visitCardPreview" class="mt-4">
+                    <!-- Данные визитки будут загружены сюда -->
+                </div>
+                <a href="/edit-visit-card/" class="btn btn-primary mt-3">Редактировать</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userId = window.location.pathname.split('/')[2];
+
+        // Загрузка данных визитки
+        async function loadVisitCard() {
+            const response = await fetch(`/visit-card/${userId}`);
+            const data = await response.json();
+            const preview = document.getElementById('visitCardPreview');
+            preview.innerHTML = `
+                <p><strong>Имя:</strong> ${data.first_name}</p>
+                <p><strong>Фамилия:</strong> ${data.last_name}</p>
+                <p><strong>Отчество:</strong> ${data.middle_name || ''}</p>
+                <p><strong>Компания:</strong> ${data.company_name}</p>
+                <p><strong>Должность:</strong> ${data.position}</p>
+                <p><strong>Телефон:</strong> ${data.phone}</p>
+                <p><strong>Email:</strong> ${data.email}</p>
+                <p><strong>Соцсети:</strong> ${data.socials?.join(', ') || ''}</p>
+            `;
+        }
+
+        loadVisitCard();
+    </script>
+</body>
+</html>
