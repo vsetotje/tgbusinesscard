@@ -19,34 +19,6 @@
                         <label for="lastName" class="form-label">Фамилия</label>
                         <input type="text" id="lastName" class="form-control" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="middleName" class="form-label">Отчество</label>
-                        <input type="text" id="middleName" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="companyName" class="form-label">Компания</label>
-                        <input type="text" id="companyName" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="position" class="form-label">Должность</label>
-                        <input type="text" id="position" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="workEmail" class="form-label">Рабочий Email</label>
-                        <input type="email" id="workEmail" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="socials" class="form-label">Соцсети (через запятую)</label>
-                        <textarea id="socials" class="form-control"></textarea>
-                    </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                     <a href="/preview/${tg.initDataUnsafe.user.id}" class="btn btn-secondary ms-2">Предпросмотр</a>
                 </form>
@@ -63,13 +35,6 @@
             const data = await response.json();
             document.getElementById('firstName').value = data.first_name || '';
             document.getElementById('lastName').value = data.last_name || '';
-            document.getElementById('middleName').value = data.middle_name || '';
-            document.getElementById('companyName').value = data.company_name || '';
-            document.getElementById('position').value = data.position || '';
-            document.getElementById('phone').value = data.phone || '';
-            document.getElementById('email').value = data.email || '';
-            document.getElementById('workEmail').value = data.work_email || '';
-            document.getElementById('socials').value = data.socials?.join(', ') || '';
         }
 
         // Сохранение данных визитки
@@ -78,13 +43,6 @@
             const data = {
                 first_name: document.getElementById('firstName').value,
                 last_name: document.getElementById('lastName').value,
-                middle_name: document.getElementById('middleName').value,
-                company_name: document.getElementById('companyName').value,
-                position: document.getElementById('position').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                work_email: document.getElementById('workEmail').value,
-                socials: document.getElementById('socials').value.split(',').map(s => s.trim()),
             };
 
             const response = await fetch(`/visit-card/${tg.initDataUnsafe.user.id}`, {

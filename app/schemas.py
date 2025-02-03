@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 class VisitCardBase(BaseModel):
     first_name: str
@@ -11,7 +11,7 @@ class VisitCardBase(BaseModel):
     email: str
     work_email: Optional[str] = None
     socials: List[str] = []
-    custom_fields: Optional[dict] = {}
+    custom_fields: Optional[Dict[str, str]] = {}
 
 class VisitCardCreate(VisitCardBase):
     pass
@@ -22,4 +22,4 @@ class VisitCard(VisitCardBase):
     logo_url: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Заменяет orm_mode в Pydantic v2
