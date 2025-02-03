@@ -1,0 +1,23 @@
+# Основные зависимости
+fastapi==0.95.2
+uvicorn==0.22.0
+
+# Работа с базой данных
+sqlalchemy==2.0.20
+psycopg2-binary==2.9.6
+python-dotenv==1.0.0
+
+# Генерация QR-кодов
+qrcode[pil]==7.4.2
+
+# Генерация PDF
+weasyprint==60.0
+
+# Работа с Telegram Bot API
+python-telegram-bot==20.3
+
+# Загрузка файлов
+python-multipart==0.0.6
+
+# Дополнительные утилиты
+pydantic==2.0.3
